@@ -1,3 +1,5 @@
+package com.typesafe.training.scalatrain
+
 /**
   * Created by d.parfenchik on 31/03/2016.
   */
@@ -19,6 +21,6 @@ class Time(val hours: Int = 0,
 
   def -(that: Time) = minus(that)
 
-  // for - new Time(1, 14) => -1 - 14
+  // for - new com.typesafe.training.scalatrain.Time(1, 14) => -1 - 14
   def unary_- = new Time(-hours, minutes)
 }
