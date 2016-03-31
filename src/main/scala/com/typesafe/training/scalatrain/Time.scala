@@ -3,7 +3,13 @@ package com.typesafe.training.scalatrain
 /**
   * Created by d.parfenchik on 31/03/2016.
   */
+object Time {
+  val MINUTES_IN_HOUR: Int = 60
 
+  def fromMinutes(minutes:Int):Time = {
+    new Time(minutes / 60, minutes% MINUTES_IN_HOUR)
+  }
+}
 class Time(val hours: Int = 0,
            val minutes: Int = 0
           ) {
