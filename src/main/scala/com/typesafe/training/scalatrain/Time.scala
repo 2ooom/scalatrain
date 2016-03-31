@@ -9,6 +9,8 @@ object Time {
   def fromMinutes(minutes:Int):Time = {
     new Time(minutes / 60, minutes% MINUTES_IN_HOUR)
   }
+
+  def fromHours(hours:Int):Time = ???
 }
 class Time(val hours: Int = 0,
            val minutes: Int = 0
@@ -16,11 +18,10 @@ class Time(val hours: Int = 0,
   def this() = {
     this(0, 0)
   }
-
+  require(hours >= 0 && hours < 24, "Hours must be within range of 0..23")
+  require(minutes >= 0 && minutes < 60, "Minutes must be within range of 0..59")
   val asMinutes = hours * 60 + minutes
 
-  // TODO: min 0 .. 6
-  // TODO: hours 0 .. 23
   def minus(that: Time) = {
     this.asMinutes - that.asMinutes
   }
