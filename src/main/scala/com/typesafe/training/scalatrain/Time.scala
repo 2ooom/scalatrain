@@ -12,7 +12,7 @@ object Time {
 
   def fromHours(hours:Int):Time = ???
 }
-case class Time(hours: Int = 0, minutes: Int = 0) {
+case class Time(hours: Int = 0, minutes: Int = 0) extends Ordered[Time] {
   def this() = {
     this(0, 0)
   }
@@ -32,4 +32,6 @@ case class Time(hours: Int = 0, minutes: Int = 0) {
   override def toString():String = {
     f"$hours%02d:$minutes%02d"
   }
+
+  override def compare(that: Time): Int = minus(that)
 }

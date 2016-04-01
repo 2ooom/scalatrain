@@ -71,6 +71,13 @@ class Animal {
 
 class Bird extends Animal {
   override def eat() = println("Twi-twi")
+  def fly = println("Flying")
 }
 new Animal().eat
 new Bird().eat()
+
+// Traits
+
+trait Swimmer {
+  def swim
+}
