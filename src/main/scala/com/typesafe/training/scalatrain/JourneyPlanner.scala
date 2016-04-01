@@ -11,9 +11,12 @@ case class JourneyPlanner(trains:Set[Train]) {
   }
 
   def stopsAt(station:Station):Set[(Time, Train)] = {
-    for {
+    trains.flatMap(train => train.schedule.withFilter(stop => stop._2 == station).map(stop => (stop._1, train)))
+
+    /*for {
       train <- trains
       stop <- train.schedule if stop._2 == station
     } yield (stop._1, train)
+    */
   }
 }

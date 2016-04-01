@@ -62,3 +62,15 @@ for {
 } yield println(n*m)
 
 for (n <- Set(1, 2, 3) if n % 2 == 1) yield "#" + n
+
+// Inheritance
+
+class Animal {
+  def eat() = println("Nom-nom")
+}
+
+class Bird extends Animal {
+  override def eat() = println("Twi-twi")
+}
+new Animal().eat
+new Bird().eat()

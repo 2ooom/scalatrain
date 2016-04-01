@@ -28,4 +28,8 @@ case class Time(hours: Int = 0, minutes: Int = 0) {
 
   // for - new com.typesafe.training.scalatrain.Time(1, 14) => -1 - 14
   def unary_- = Time(-hours, minutes)
+
+  override def toString():String = {
+    f"$hours%02d:$minutes%02d"
+  }
 }
