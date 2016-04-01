@@ -1,4 +1,6 @@
 package com.typesafe.training.scalatrain
+import play.api.libs.json._
+import scala.util.{Try}
 
 /**
   * Created by d.parfenchik on 31/03/2016.
@@ -11,6 +13,15 @@ object Time {
   }
 
   def fromHours(hours:Int):Time = ???
+
+
+  def fromJson(json:JsValue):Option[Time] = {
+   val timeTry: Try[Time] = for {
+     h <- Try((json \ "hours").as[Int])
+     m = Try((json \ "minutes").as[Int]).getOrElse(0)
+   } yield Time(h, m)
+    timeTry.toOption
+  }
 }
 case class Time(hours: Int = 0, minutes: Int = 0) extends Ordered[Time] {
   def this() = {
@@ -34,4 +45,11 @@ case class Time(hours: Int = 0, minutes: Int = 0) extends Ordered[Time] {
   }
 
   override def compare(that: Time): Int = minus(that)
+
+  def toJson(): JsValue = {
+    Json.obj(
+      "hours" -> this.hours,
+      "minutes" -> this.minutes
+    )
+  }
 }

@@ -6,8 +6,26 @@ package com.typesafe.training.scalatrain
 
 import java.lang.{ IllegalArgumentException => IAE }
 import org.scalatest.{ Matchers, WordSpec }
+import play.api.libs.json.Json
+import scala.util.parsing.json.{ JSONObject => JsonObject }
 
 class TimeSpec extends WordSpec with Matchers {
+
+  "Calling fromJson" should {
+    "return None for an invalid json" in {
+      Time fromJson Json.obj() shouldBe None
+    }
+    "return Some wrapping a properly initialized Time for a valid JsonOject" in {
+      (Time fromJson Json.obj("hours" -> 9, "minutes" -> 30)) shouldEqual Some(Time(9, 30))
+    }
+  }
+
+  "Calling fromJson after toJson" should {
+    "return Some wrapping the original Time" in {
+      val time = Time(9, 30)
+      (Time fromJson (time.toJson)) shouldEqual Some(time)
+    }
+  }
 
   "Creating a Time" should {
     "throw an IllegalArgumentException for hours not within 0 and 23" in {
