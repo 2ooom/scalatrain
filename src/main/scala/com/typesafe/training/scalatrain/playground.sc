@@ -39,3 +39,26 @@ map(1)
 map.get(2)
 map(3)
 map.getOrElse(4, "d")
+
+// Functional collections
+
+numbers.map(_.toString + 1)
+numbers.map(n => n + 1)
+
+// Currying
+def add(a: Int)(b: Int): Int = {
+  a + b
+}
+
+val addOne: Int => Int = add(1)
+
+numbers.map(x => addOne(x))
+
+// For loop
+
+for {
+  n <- 1 to 3
+  m <- 1.to(n)
+} yield println(n*m)
+
+for (n <- Set(1, 2, 3) if n % 2 == 1) yield "#" + n
