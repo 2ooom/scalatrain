@@ -81,3 +81,6 @@ new Bird().eat()
 trait Swimmer {
   def swim
 }
+
+// Optionals
+Option("Scala").map(_.reverse)
